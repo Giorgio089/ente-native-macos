@@ -1,0 +1,43 @@
+# Ente museum config — Beispiel für natives macOS-Setup
+# Kopieren nach museum.yaml (im museum/server Verzeichnis), Platzhalter füllen.
+# NIEMALS mit echten Werten committen — steht im .gitignore.
+
+db:
+    host: localhost
+    port: 5433
+    name: ente_db
+    user: postgres
+    password: CHANGE_ME_pg
+
+s3:
+    are_local_buckets: true
+    use_path_style_urls: true
+    b2-eu-cen:
+        key: CHANGE_ME_minio_user
+        secret: CHANGE_ME_minio_password
+        # WICHTIG: Dieser Endpoint landet 1:1 in presigned Upload-URLs, die an
+        # den Client geschickt werden. "localhost" funktioniert nur, wenn
+        # Client und Server dieselbe Maschine sind. Für Remote-Zugriff (z.B.
+        # über Tailscale) hier die vom Client aus erreichbare IP/Hostname
+        # eintragen — siehe docs/lessons-learned.md.
+        endpoint: CHANGE_ME_server-ip-or-hostname:3200
+        region: eu-central-2
+        bucket: ente-photos
+
+apps:
+    # Basis-URL für Freigabe-/Album-Links — ebenfalls client-erreichbar machen
+    public-albums: http://CHANGE_ME_server-ip-or-hostname:3002
+
+key:
+    # Generieren mit: go run tools/gen-random-keys/main.go (im Ente-Server-Repo)
+    encryption: CHANGE_ME_encryption_key
+    hash: CHANGE_ME_hash_key
+
+jwt:
+    secret: CHANGE_ME_jwt_secret
+
+internal:
+    admins:
+        # User-ID nach erstem Login per SQL ermitteln:
+        # SELECT user_id, creation_time FROM users;
+        - CHANGE_ME_user_id

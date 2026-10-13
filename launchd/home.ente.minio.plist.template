@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>home.ente.minio</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/minio</string>
+    <string>server</string><string>/PATH/TO/ente/minio</string>
+    <string>--address</string><string>:3200</string>
+    <string>--console-address</string><string>:3201</string>
+  </array>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>MINIO_ROOT_USER</key><string>CHANGE_ME_USER</string>
+    <!-- NIEMALS ein echtes Passwort committen. Secrets gehören in ein
+         secrets-management (oder zumindest eine .env, die im .gitignore steht) -->
+    <key>MINIO_ROOT_PASSWORD</key><string>CHANGE_ME_PASSWORD</string>
+  </dict>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>StandardOutPath</key><string>/PATH/TO/internal/logs/minio.out.log</string>
+  <key>StandardErrorPath</key><string>/PATH/TO/internal/logs/minio.err.log</string>
+</dict></plist>

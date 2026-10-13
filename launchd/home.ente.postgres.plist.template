@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>home.ente.postgres</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/opt/postgresql@16/bin/postgres</string>
+    <string>-D</string><string>/PATH/TO/ente/postgres</string>
+    <string>-p</string><string>5433</string>
+  </array>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <!-- Wichtig: ohne LANG/LC_ALL schlägt der Start mit
+         "FATAL: postmaster became multithreaded during startup" fehl -->
+    <key>LANG</key><string>en_US.UTF-8</string>
+    <key>LC_ALL</key><string>en_US.UTF-8</string>
+  </dict>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <!-- Log-Pfade MÜSSEN auf der internen Platte liegen, nicht auf externen
+       Volumes — siehe docs/lessons-learned.md (TCC/launchd-Problem) -->
+  <key>StandardOutPath</key><string>/PATH/TO/internal/logs/postgres.out.log</string>
+  <key>StandardErrorPath</key><string>/PATH/TO/internal/logs/postgres.err.log</string>
+</dict></plist>

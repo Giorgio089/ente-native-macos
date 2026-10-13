@@ -1,0 +1,11 @@
+# Niemals echte Secrets/Configs committen
+museum.yaml
+credentials.env
+*.plist
+!launchd/*.plist.template
+
+# Logs, Daten, lokale Artefakte
+logs/
+*.log
+.DS_Store
+*.tar.gz
